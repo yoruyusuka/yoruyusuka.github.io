@@ -15,12 +15,16 @@
 
 <script>
 function enterSite() {
+    sessionStorage.setItem("startMusic", "true");
+
     document.body.style.opacity = "0";
+
     setTimeout(() => {
         window.location.href = "home.html";
     }, 800);
 }
 </script>
+
 
 </body>
 </html>
