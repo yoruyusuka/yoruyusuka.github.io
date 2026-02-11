@@ -19,6 +19,38 @@ for (let i = 0; i < 500; i++) {
         speed: Math.random() * 4 + 4
     });
 }
+let stars = [];
+
+for (let i = 0; i < 80; i++) {
+    stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random(),
+        speed: Math.random() * 0.1 + 0.02
+    });
+}
+// ===== Sterne zeichnen =====
+for (let i = 0; i < stars.length; i++) {
+    const s = stars[i];
+
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+    ctx.fill();
+
+    // Twinkle Effekt
+    s.alpha += (Math.random() - 0.5) * 0.02;
+    s.alpha = Math.max(0.1, Math.min(1, s.alpha));
+
+    // Langsame Bewegung
+    s.y += s.speed;
+
+    if (s.y > canvas.height) {
+        s.y = 0;
+        s.x = Math.random() * canvas.width;
+    }
+}
 
 function drawRain() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
