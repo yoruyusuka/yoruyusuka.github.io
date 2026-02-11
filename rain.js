@@ -45,26 +45,6 @@ function drawRain() {
 
 drawRain();
 
-/* Lightning */
-function lightning() {
-    const flash = document.createElement("div");
-    flash.classList.add("flash");
-    document.body.appendChild(flash);
-
-    flash.style.opacity = 0.8;
-
-    setTimeout(() => {
-        flash.style.opacity = 0;
-        document.body.removeChild(flash);
-    }, 150);
-}
-
-setInterval(() => {
-    if (Math.random() > 0.85) {
-        lightning();
-    }
-}, 3000);
-
 const rainSound = document.getElementById("sadboySound");
 const toggleBtn = document.getElementById("soundToggle");
 
