@@ -65,17 +65,24 @@ setInterval(() => {
     }
 }, 3000);
 
-/* Sound toggle */
 const rainSound = document.getElementById("rainSound");
 const toggleBtn = document.getElementById("soundToggle");
 
-toggleBtn.addEventListener("click", () => {
-    if (rainSound.paused) {
-        rainSound.volume = 0.4;
-        rainSound.play();
-        toggleBtn.textContent = "🔊 Ambient On";
+let isPlaying = false;
+
+toggleBtn.addEventListener("click", async () => {
+    if (!isPlaying) {
+        try {
+            rainSound.volume = 0.4;
+            await rainSound.play();
+            toggleBtn.textContent = "🔊 Ambient On";
+            isPlaying = true;
+        } catch (err) {
+            console.log("Playback blocked:", err);
+        }
     } else {
         rainSound.pause();
         toggleBtn.textContent = "🔇 Ambient Off";
+        isPlaying = false;
     }
 });
