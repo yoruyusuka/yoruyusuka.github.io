@@ -99,3 +99,31 @@ toggleBtn.addEventListener("click", async () => {
         isPlaying = false;
     }
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const rainSound = document.getElementById("sadboySound");
+
+    if (sessionStorage.getItem("startMusic") === "true") {
+        rainSound.volume = 0;
+        rainSound.play().then(() => {
+
+            // Smooth Fade-In
+            let volume = 0;
+            const fade = setInterval(() => {
+                if (volume < 0.4) {
+                    volume += 0.02;
+                    rainSound.volume = volume;
+                } else {
+                    clearInterval(fade);
+                }
+            }, 50);
+
+        }).catch(err => {
+            console.log("Autoplay blocked:", err);
+        });
+
+        sessionStorage.removeItem("startMusic");
+    }
+
+});
