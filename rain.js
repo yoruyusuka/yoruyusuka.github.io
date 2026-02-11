@@ -30,7 +30,11 @@ for (let i = 0; i < 80; i++) {
         speed: Math.random() * 0.1 + 0.02
     });
 }
-// ===== Sterne zeichnen =====
+
+function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // ===== Sterne zeichnen =====
 for (let i = 0; i < stars.length; i++) {
     const s = stars[i];
 
@@ -51,9 +55,6 @@ for (let i = 0; i < stars.length; i++) {
         s.x = Math.random() * canvas.width;
     }
 }
-
-function drawRain() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "rgba(255,255,255,0.2)";
     ctx.lineWidth = 1;
 
