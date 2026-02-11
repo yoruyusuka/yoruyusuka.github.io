@@ -9,7 +9,7 @@ body {
     align-items: center;
 
     background-color: #0a0a0f;
-    background-image: url("./castle.png");
+    background-image: url("./finished.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,5 +73,6 @@ canvas {
     will-change: transform;
     transform: translateZ(0);
 }
+
 
 
