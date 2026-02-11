@@ -65,7 +65,7 @@ setInterval(() => {
     }
 }, 3000);
 
-const rainSound = document.getElementById("rainSound");
+const rainSound = document.getElementById("sadboySound");
 const toggleBtn = document.getElementById("soundToggle");
 
 let isPlaying = false;
