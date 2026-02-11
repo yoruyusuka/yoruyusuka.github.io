@@ -1,3 +1,7 @@
+// ===============================
+// CANVAS SETUP
+// ===============================
+
 const canvas = document.getElementById("rain");
 const ctx = canvas.getContext("2d");
 
@@ -9,8 +13,14 @@ window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
 });
 
-let drops = [];
+// ===============================
+// REGEN + STERNE DATEN
+// ===============================
 
+let drops = [];
+let stars = [];
+
+// Regen erstellen
 for (let i = 0; i < 500; i++) {
     drops.push({
         x: Math.random() * canvas.width,
@@ -19,8 +29,8 @@ for (let i = 0; i < 500; i++) {
         speed: Math.random() * 4 + 4
     });
 }
-let stars = [];
 
+// Sterne erstellen
 for (let i = 0; i < 80; i++) {
     stars.push({
         x: Math.random() * canvas.width,
@@ -31,35 +41,45 @@ for (let i = 0; i < 80; i++) {
     });
 }
 
+// ===============================
+// ANIMATION
+// ===============================
+
 function drawRain() {
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // ===== Sterne zeichnen =====
-for (let i = 0; i < stars.length; i++) {
-    const s = stars[i];
+    for (let i = 0; i < stars.length; i++) {
 
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
-    ctx.fill();
+        const s = stars[i];
 
-    // Twinkle Effekt
-    s.alpha += (Math.random() - 0.5) * 0.02;
-    s.alpha = Math.max(0.1, Math.min(1, s.alpha));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        ctx.fill();
 
-    // Langsame Bewegung
-    s.y += s.speed;
+        // Twinkle Effekt
+        s.alpha += (Math.random() - 0.5) * 0.02;
+        s.alpha = Math.max(0.1, Math.min(1, s.alpha));
 
-    if (s.y > canvas.height) {
-        s.y = 0;
-        s.x = Math.random() * canvas.width;
+        // Langsame Bewegung
+        s.y += s.speed;
+
+        if (s.y > canvas.height) {
+            s.y = 0;
+            s.x = Math.random() * canvas.width;
+        }
     }
-}
+
+    // ===== Regen zeichnen =====
     ctx.strokeStyle = "rgba(255,255,255,0.2)";
     ctx.lineWidth = 1;
 
     for (let i = 0; i < drops.length; i++) {
+
         const d = drops[i];
+
         ctx.beginPath();
         ctx.moveTo(d.x, d.y);
         ctx.lineTo(d.x, d.y + d.length);
@@ -78,13 +98,61 @@ for (let i = 0; i < stars.length; i++) {
 
 drawRain();
 
+
+// ===============================
+// SOUND SYSTEM
+// ===============================
+
 const rainSound = document.getElementById("verstandSound");
 const toggleBtn = document.getElementById("soundToggle");
 
 let isPlaying = false;
 
+
+// ===============================
+// AUTO START NACH ENTER SEITE
+// ===============================
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    if (sessionStorage.getItem("startMusic") === "true") {
+
+        rainSound.volume = 0;
+
+        rainSound.play().then(() => {
+
+            let volume = 0;
+
+            const fade = setInterval(() => {
+
+                if (volume < 0.4) {
+                    volume += 0.02;
+                    rainSound.volume = volume;
+                } else {
+                    clearInterval(fade);
+                }
+
+            }, 50);
+
+        }).catch(err => {
+            console.log("Autoplay blocked:", err);
+        });
+
+        sessionStorage.removeItem("startMusic");
+        isPlaying = true;
+        toggleBtn.textContent = "🔊 Ambient On";
+    }
+});
+
+
+// ===============================
+// MANUELLER SOUND TOGGLE
+// ===============================
+
 toggleBtn.addEventListener("click", async () => {
+
     if (!isPlaying) {
+
         try {
             rainSound.volume = 0.4;
             await rainSound.play();
@@ -93,37 +161,12 @@ toggleBtn.addEventListener("click", async () => {
         } catch (err) {
             console.log("Playback blocked:", err);
         }
+
     } else {
+
         rainSound.pause();
         toggleBtn.textContent = "🔇 Ambient Off";
         isPlaying = false;
-    }
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    const rainSound = document.getElementById("sadboySound");
-
-    if (sessionStorage.getItem("startMusic") === "true") {
-        rainSound.volume = 0;
-        rainSound.play().then(() => {
-
-            // Smooth Fade-In
-            let volume = 0;
-            const fade = setInterval(() => {
-                if (volume < 0.4) {
-                    volume += 0.02;
-                    rainSound.volume = volume;
-                } else {
-                    clearInterval(fade);
-                }
-            }, 50);
-
-        }).catch(err => {
-            console.log("Autoplay blocked:", err);
-        });
-
-        sessionStorage.removeItem("startMusic");
     }
 
 });
