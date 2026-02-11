@@ -14,7 +14,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    font-family: Arial, sans-serif;
+    font-family: Merriweather, sans-serif;
     text-align: center;
     color: white;
 
@@ -73,6 +73,7 @@ canvas {
     will-change: transform;
     transform: translateZ(0);
 }
+
 
 
 
