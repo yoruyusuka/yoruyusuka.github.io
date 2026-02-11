@@ -73,6 +73,12 @@ canvas {
     will-change: transform;
     transform: translateZ(0);
 }
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 
 
 
