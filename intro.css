@@ -1,45 +1,56 @@
 body {
     margin: 0;
     height: 100vh;
-    background: #0a0a0f;
+    background: radial-gradient(circle at center, #0a0a0f 0%, #000000 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
-    color: white;
     overflow: hidden;
-    transition: opacity 0.8s ease;
+    cursor: pointer;
+    transition: opacity 1s ease;
 }
 
 .intro {
     text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
 .title {
-    font-size: 60px;
-    letter-spacing: 5px;
-    margin-bottom: 40px;
-    animation: fadeIn 2s ease forwards;
+    font-size: 70px;
+    letter-spacing: 6px;
+    animation: float 4s ease-in-out infinite,
+               fadeSlide 3s ease-in-out infinite alternate;
 }
 
-button {
-    padding: 15px 40px;
-    font-size: 18px;
-    background: #8f00ff;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.hint {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.5;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-button:hover {
-    box-shadow: 0 0 20px #8f00ff,
-                0 0 40px #8f00ff;
-    transform: scale(1.1);
+/* Sanftes Schweben */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Links-Rechts + Fade */
+@keyframes fadeSlide {
+    0% { transform: translateX(-10px); opacity: 0.7; }
+    100% { transform: translateX(10px); opacity: 1; }
+}
+
+/* Hint pulsiert */
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.3; }
+}
+
+/* Fade Out beim Klick */
+.fadeOut {
+    opacity: 0;
 }
