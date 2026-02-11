@@ -1,36 +1,99 @@
+/* ===== Fade In ===== */
 body {
-margin: 0;
-min-height: 100vh;
+    margin: 0;
+    min-height: 100vh;
 
-display: flex;
-flex-direction: column;
-justify-content: center; /* vertikal */
-align-items: center;     /* horizontal */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-background-color:#f4f4f4;
-background-image: url("./castle.png");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
+    background-color: #0a0a0f;
+    background-image: url("./castle.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
-font-family: Arial, sans-serif;
-text-align: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
 
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== Dark Overlay ===== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+}
+
+/* ===== Links Styling ===== */
 a {
-display: inline-block;
-padding: 20px 30px;
-margin: 10px;
-background-color:#300050;
-color:#ffffff;
-text-decoration: none;
-border-radius: 10px;
-font-size: 20px;
-transition: background-color 0.3s ease;
-}   
-a:hover {
-background-color:#8f0088;
-}
+    display: inline-block;
+    padding: 20px 40px;
+    margin: 12px;
+    background: rgba(60, 0, 90, 0.8);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+    transition: all 0.3s ease;
 }
 
+/* Glow Effekt */
+a:hover {
+    background: #8f00ff;
+    box-shadow: 0 0 15px #8f00ff,
+                0 0 30px #8f00ff,
+                0 0 60px #8f00ff;
+    transform: scale(1.05);
+}
+
+/* ===== Regen ===== */
+.rain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.08) 0px,
+        rgba(255,255,255,0.08) 2px,
+        transparent 2px,
+        transparent 20px
+    );
+    animation: rain 0.3s linear infinite;
+    z-index: 1;
+}
+
+@keyframes rain {
+    from { background-position: 0 -100px; }
+    to { background-position: 0 100px; }
+}
+
+/* ===== Nebel ===== */
+.fog {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05), transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.04), transparent 70%);
+    animation: fogMove 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes fogMove {
+    from { transform: translateX(-10%); }
+    to { transform: translateX(10%); }
+}
 
