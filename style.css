@@ -9,7 +9,7 @@ body {
     align-items: center;
 
     background-color: #0a0a0f;
-    background-image: url("./finished.png");
+    background-image: url("./brokenheart.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,6 +73,7 @@ canvas {
     will-change: transform;
     transform: translateZ(0);
 }
+
 
 
 
