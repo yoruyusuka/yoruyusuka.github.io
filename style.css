@@ -9,7 +9,7 @@ justify-content: center; /* vertikal */
 align-items: center;     /* horizontal */
 
 background-color:#f4f4f4;
-background-image: url("castle.png");
+background-image: url("./castle.png");
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -33,3 +33,4 @@ a:hover {
 background-color:#8f0088;
 }
 }
+
