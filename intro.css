@@ -47,6 +47,10 @@ canvas {
     background: linear-gradient(90deg, #4da6ff, #a64dff, #ff4df2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow:
+        0 0 10px rgba(164, 77, 255, 0.7),
+        0 0 20px rgba(164, 77, 255, 0.5),
+        0 0 40px rgba(255, 77, 242, 0.4);
     animation: float 4s ease-in-out infinite,
                fadeSlide 3s ease-in-out infinite alternate;
 }
