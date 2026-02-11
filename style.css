@@ -1,5 +1,5 @@
 body {
-    cursor: url("moon-cursor.png"), auto;
+    cursor: url("moon-cursor1.png") 16 16, auto;
     margin: 0;
     min-height: 100vh;
     overflow: hidden;
@@ -79,6 +79,7 @@ ul {
     padding: 0;
     margin: 0;
 }
+
 
 
 
