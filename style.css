@@ -6,9 +6,12 @@ body {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 
+    transform: translateY(-8vh); /* ← DAS verschiebt es leicht nach oben */
+    
     background-color: #0a0a0f;
     background-image: url("fucklove1.png");
     background-size: cover;
@@ -85,3 +88,4 @@ ul {
     gap: 20px; /* Abstand zwischen Links */
     flex-wrap: wrap; /* optional: umbrechen auf kleinen Screens */
 }
+
