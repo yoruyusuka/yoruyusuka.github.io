@@ -78,16 +78,10 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Abstand zwischen Links */
+    flex-wrap: wrap; /* optional: umbrechen auf kleinen Screens */
 }
-
-
-
-
-
-
-
-
-
-
-
-
