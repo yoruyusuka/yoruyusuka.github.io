@@ -13,7 +13,7 @@ body {
     transform: translateY(-15vh); /* ← DAS verschiebt es leicht nach oben */
     
     background-color: #0a0a0f;
-    background-image: url("fucklove1.png");
+    background-image: url("fucklove2.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -88,5 +88,6 @@ ul {
     gap: 20px; /* Abstand zwischen Links */
     flex-wrap: wrap; /* optional: umbrechen auf kleinen Screens */
 }
+
 
 
